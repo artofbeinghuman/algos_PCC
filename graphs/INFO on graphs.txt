@@ -1,0 +1,22 @@
+Pour les graphes importants, il faut afficher des données quantitatives (nombre de composantes connexes ou fortement connexes, nombre de composantes bi-connexes, distance d'un PCC entre deux sommets fixés, etc. plutôt que la liste des CC ou CFC, ou le tableau complet des distances des PCC !) Il faudra aussi utiliser ces grpahes pour distinguer les performances des différents algorithmes...
+
+
+Graphes non-orientés:
+    Le graphe 1: provient d'une modélisation des collaborations dans une communauté scientifique. 5242 sommets, 14496 arêtes. FICHIER. (fichier original: ca-GrQc)
+    Le graphe 2: provient d'une modélisation des collaborations dans une communauté scientifique. 9877 sommets, 25998 arêtes. FICHIER. (fichier original: ca-HepTh)
+    Le graphe 3: provient d'une modélisation des collaborations dans une communauté scientifique. 18772 sommets, 198110 arêtes. FICHIER. (fichier original: ca-AstroPh)
+    Le graphe 6: sous-graphe connexe du graphe 3. 17903 sommets. FICHIER. 
+
+
+Graphes orientés:
+    Le graphe 4: provient d'une modélisation de connections Gnutella (P2P). 6301 sommets, 20777 arêtes. FICHIER. (fichier original: p2p-Gnutella08) 
+
+
+Graphes non-orientés valués:
+    Le graphe 7: graphe 6 valués (poids positifs ou nuls). FICHIER. 
+
+
+Graphes orientés valués:
+    Le graphe 5: provient d'une modélisation de connections Gnutella (P2P)Graphe 4 muni de poids positifs ou nuls. 6301 sommets, 20777 arêtes. FICHIER. 
+
+
