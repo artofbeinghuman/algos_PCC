@@ -24,6 +24,7 @@ def BellmanFord(G, s):
 					d[v] = d[u] + w
 					Pi[v] = u
 
+
 	for u, adj in enumerate(G):
 			for v, w in adj:
 				if (d[v] > d[u] + w):
