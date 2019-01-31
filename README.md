@@ -17,11 +17,11 @@ Puis, on importe un graphe comme ça:
 g, index_to_vertex_name = import_graph("graphs/CachanGraphe7.txt", True)
 ```
 
-Nos algos s'attendent à ce que les sommets soient énumeré de 1 à n. Inversement, vos 
-graphes ont des sommets avec une enumeration lacunaire, alors nous traduisons 
-l'enumeration des sommets pendant l'import vers [1 .. n]. 
-Avec index_to_vertex_name on peut traduire les noms des sommets resultant de 
-nos algos à leur nom originel dans votre graphe. Ça veut dire, si `s` est un 
+Nos algos s'attendent à ce que les sommets soient énumerés de 1 à n. Inversement, vos 
+graphes ont des sommets avec une enumeration lacunaire (certains sommets entre 1 et n n'existent pas),
+alors nous traduisons pendant l'import l'enumeration des sommets vers [1 .. n].
+Avec index_to_vertex_name, on peut traduire les noms des sommets resultant de 
+nos algos à leur nom d'origine dans votre graphe. Ça veut dire, si `s` est un 
 certain sommet dans le resultat de Bellman-Ford par exemple, alors
 `index_to_vertex_name[s]` donne le nom originel de ce sommet.
 
@@ -46,3 +46,4 @@ s = 10 # choisir un sommet de début
 dist, Pi = dijkstra.Dijkstra(g, s)
 ```
 
+Pour tester les files de Fibonacci, se référer au fichier fibonacci.py
