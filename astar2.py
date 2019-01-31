@@ -188,19 +188,19 @@ def get_predecessor(P,s,u):
         u = P[u]
     return l
 
-
-import bellman as bm
-#Definition du graphe
-G = import_graph("graphs\CachanGraphe5.txt")
-#print(G[0])
-for i in range(1,1500):
-    (bfb,bfd,bfPi) = bm.BellmanFord(G,0)
-    ast = Astar(G,0,i)
-    ras = ast[0][i]
-    rbf = bfd[i]
-    #print(ast[0][0::10])
-    if rbf != ras:
-        print("Error : "+str(i)+" "+str(ras)+" "+str(rbf))
-    print(get_predecessor(ast[1],0,i),get_predecessor(bfPi,0,i))
-        
+def test():
+    import bellman as bm
+    #Definition du graphe
+    G = import_graph("graphs\CachanGraphe5.txt")
+    #print(G[0])
+    for i in range(1,1500):
+        (bfb,bfd,bfPi) = bm.BellmanFord(G,0)
+        ast = Astar(G,0,i)
+        ras = ast[0][i]
+        rbf = bfd[i]
+        #print(ast[0][0::10])
+        if rbf != ras:
+            print("Error : "+str(i)+" "+str(ras)+" "+str(rbf))
+        print(get_predecessor(ast[1],0,i),get_predecessor(bfPi,0,i))
+            
 
