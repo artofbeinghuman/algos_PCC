@@ -1,5 +1,6 @@
 import sys
 sys.setrecursionlimit(int(10e7))
+import numpy as np
 #Représentation des graphes: listes d'adjacence
 grap = [[2,1,5],
 [2],[3],[4,9],[1,8],[],[5],[],[12],[10],[11],[],[]]
@@ -366,3 +367,17 @@ for x in range(26):
     tau.insert(x*x,str(x*x)+"x??")
 for t in range(1000):
     print(tau.pop())
+    
+
+def dicho(T,x,min=0,max=None):
+    """fonction calculant la dichotomie"""
+    if max == None:
+        max = len(T) - 1
+    if max-min<=1:
+        return min
+    c = (max - min)//2
+    if T[c] <= x :
+        return dicho(T,x,c,max)
+    else:
+        return dicho(T,x,min,c)
+    
