@@ -176,7 +176,7 @@ def od(f):
             i -= 1
     return odf
 
-def cfc(G):#algorithme pour graphes orientés
+def cfc(G):#algorithme pour graphes orientés - non abouti
     """Algorithme de Kosaraju-Sharir"""
     n = len(G)
     d,f = pptime(G)
@@ -193,7 +193,7 @@ def cfc(G):#algorithme pour graphes orientés
 
 
 
-""" autre version de l'algorithme
+""" #autre version de l'algorithme ordre_decroissant
 def ordre_decr(f):
     # énumère les sommets selon la date f(_) par ordre décroissant.
     #f : tableau tq f[i] = f(i)
@@ -219,6 +219,8 @@ def ordre_decr(f):
 
 ## 2PAC
 """
+
+#Algorithme des points d'articulation
 def pointartic(G):
     #  détermine les points d'articulation
     PA = [False in range(len(G))]
@@ -284,14 +286,14 @@ class tas:
         i = self.nb#on commence à 1
         while i >= len(self.T):
             self.T.append([key,value])
-        while (i//2 > 1) and (self.T[i//2][0] > key):
+        while (i//2 >= 1) and (self.T[i//2][0] > key):
             self.T[i] = self.T[i//2]#prop du tas
             i //= 2
-        if self.nb >= len(self.T):
+        """if self.nb >= len(self.T):
             #self.T.append([key,value])
             pass
-        else:
-            self.T[i] = [key,value]
+        else:"""
+        self.T[i] = [key,value]
         self.d[value] = i
         
     def percolation(self,i):
@@ -307,7 +309,7 @@ class tas:
             self.d[self.T[ancien_i][1]] = i
             self.T[i] = self.T[ancien_i]
             self.T[ancien_i] = ti
-            self.percolation(i)
+            self.percolation(i)#on continue la percolation plus bas
             
     def extraitMin(self):
         """extrait le minimum O(log(n))"""
@@ -315,7 +317,7 @@ class tas:
         self.T[1] = self.T[self.nb]
         self.d[self.T[1][1]] = 1
         self.nb -= 1
-        self.percolation(1)
+        self.percolation(1)#on le faire descendre l'arbre
         return mini
     
     def pop(self):#alias
@@ -331,7 +333,7 @@ class tas:
         return v in self.d 
     def initialise(self,L):
         """Initialise le tas en O(n)"""
-        self.T = L
+        self.T = L.copy()
         self.nb = len(L)
         i = np.floor(len(L)/2)
         while i >= 1:
@@ -339,11 +341,28 @@ class tas:
             i -= 1
     
     def decreasekey(self,value,new_key):
-        self.T[self.d[value]][0] = new_key
-        self.percolation(self.d[value])
+        i = self.d[value]
+        while (i//2 > 1) and (self.T[i//2][0] > new_key):
+            self.T[i] = self.T[i//2]#prop du tas
+            self.d[self.T[i][1]] = i#maj du dico
+            i //= 2
+        
+        self.T[i][0] = new_key
+        self.T[i][1] = value
+        self.d[value] = i
+        
         
     def __repr__(self):
-        return "tas:"+str(self.T)
+        stri = "tas:"
+        for k in range(self.nb+1):
+            stri += str(self.T[k])
+        return stri
+        
+""" tests"""
 tau = tas()
-for k in range(10):
-    tau.insert(k*k,str(k)+"k!")
+for k in range(1000):
+    tau.insert(k,str(k)+"k!")
+for x in range(26):
+    tau.insert(x*x,str(x*x)+"x??")
+for t in range(1000):
+    print(tau.pop())
