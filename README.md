@@ -1,7 +1,7 @@
 # Algos de PCC:
 
 
-Pour tester nos algos, je suggest d'utiliser ipython ou pyzo.
+Pour tester nos algos, je suggère d'utiliser ipython ou pyzo.
 
 Les imports:
 ```python
@@ -17,12 +17,12 @@ Puis, on importe un graphe comme ça:
 g, index_to_vertex_name = import_graph("graphs/CachanGraphe7.txt", True)
 ```
 
-Nos algos s'attendent que les sommets soient énumeré de 1 à n. Inversement, vos 
+Nos algos s'attendent à ce que les sommets soient énumeré de 1 à n. Inversement, vos 
 graphes ont des sommets avec une enumeration lacunaire, alors nous traduisons 
 l'enumeration des sommets pendant l'import vers [1 .. n]. 
 Avec index_to_vertex_name on peut traduire les noms des sommets resultant de 
 nos algos à leur nom originel dans votre graphe. Ça veut dire, si `s` est un 
-certain sommet dans le resultat de Bellman-Ford par exemple, 
+certain sommet dans le resultat de Bellman-Ford par exemple, alors
 `index_to_vertex_name[s]` donne le nom originel de ce sommet.
 
 
