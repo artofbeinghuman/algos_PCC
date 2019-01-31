@@ -278,29 +278,35 @@ class tas:
         self.d = dict()#emplacements
         self.nb = 0
         
-    def insert(s,value,key=0):
+    def insert(self,key=0,value='Value'):
         """insère une nouvelle valeur en O(log(n))"""
-        s.nb += 1
-        i = s.nb#on commence à 1
-        while (i//2 > 1) and (T[i//2] > value):
-            T[i] = T[i//2]
+        self.nb += 1
+        i = self.nb#on commence à 1
+        while i >= len(self.T):
+            self.T.append([key,value])
+        while (i//2 > 1) and (self.T[i//2][0] > key):
+            self.T[i] = self.T[i//2]#prop du tas
             i //= 2
-        T[i] = [value,key]
-        s.d[value] = i
+        if self.nb >= len(self.T):
+            #self.T.append([key,value])
+            pass
+        else:
+            self.T[i] = [key,value]
+        self.d[value] = i
         
     def percolation(self,i):
         """ rétablit les propriétés du tas O(log(n))"""
         ancien_i = i
         g = 2 * i
         d = 2 * i
-        if g < self.nb and T[g][0] < T[i][0]:i = g
-        if d < self.nb and T[d][0] < T[i][0]:i = d
+        if g < self.nb and self.T[g][0] < self.T[i][0]:i = g
+        if d < self.nb and self.T[d][0] < self.T[i][0]:i = d
         if i != ancien_i:
-            ti = T[i]
-            s.d[T[i][1]] = ancien_i
-            s.d[T[ancien_i][1]] = i
-            T[i] = T[ancien_i]
-            T[ancien_i] = ti
+            ti = self.T[i]
+            s.d[self.T[i][1]] = ancien_i
+            s.d[self.T[ancien_i][1]] = i
+            self.T[i] = self.T[ancien_i]
+            self.T[ancien_i] = ti
             self.percolation(i)
             
     def extraitMin(self):
@@ -313,11 +319,11 @@ class tas:
         return mini
     
     def pop(self):#alias
-        return extraitMin(self)    
+        return self.extraitMin()    
     def modify(self,cle,v):#alias
-        return decreasekey(self,v,cle)
+        return self.decreasekey(v,cle)
     def add(self,e):#alias
-        return insert(self,e[0],e[1])
+        return self.insert(e[0],e[1])
     def empty(self):
         return self.nb == 0
     def contains(self,v):
@@ -330,9 +336,10 @@ class tas:
         i = np.floor(len(L)/2)
         while i >= 1:
             percolation(i)
+            i -= 1
     
     def decreasekey(self,value,new_key):
-        T[self.d[value]][0] = new_key
+        self.T[self.d[value]][0] = new_key
         self.percolation(self.d[value])
         
     def __repr__(self):
