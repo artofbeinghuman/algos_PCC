@@ -47,3 +47,5 @@ dist, Pi = dijkstra.Dijkstra(g, s)
 ```
 
 Pour tester les files de Fibonacci, se référer au fichier fibonacci.py
+
+Pour tester les algorithmes de parcours, se référer au fichier parcours.py
