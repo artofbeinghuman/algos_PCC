@@ -274,7 +274,7 @@ class file:
 class tas:
     def __init__(self):
         """ crée une file de priorité en O(1) """
-        self.T = []
+        self.T = [[None,None]]
         self.d = dict()#emplacements
         self.nb = 0
         
@@ -298,13 +298,13 @@ class tas:
         """ rétablit les propriétés du tas O(log(n))"""
         ancien_i = i
         g = 2 * i
-        d = 2 * i
+        d = 2 * i + 1
         if g < self.nb and self.T[g][0] < self.T[i][0]:i = g
         if d < self.nb and self.T[d][0] < self.T[i][0]:i = d
-        if i != ancien_i:
+        if i != ancien_i:#trouvé un fils ne respectant pas la propriété du tas
             ti = self.T[i]
-            s.d[self.T[i][1]] = ancien_i
-            s.d[self.T[ancien_i][1]] = i
+            self.d[self.T[i][1]] = ancien_i
+            self.d[self.T[ancien_i][1]] = i
             self.T[i] = self.T[ancien_i]
             self.T[ancien_i] = ti
             self.percolation(i)
@@ -313,7 +313,7 @@ class tas:
         """extrait le minimum O(log(n))"""
         mini = self.T[1][1]#value of the min -> key is not important
         self.T[1] = self.T[self.nb]
-        s.d[T[1][1]] = 1
+        self.d[self.T[1][1]] = 1
         self.nb -= 1
         self.percolation(1)
         return mini
@@ -344,5 +344,6 @@ class tas:
         
     def __repr__(self):
         return "tas:"+str(self.T)
-        
-        
+tau = tas()
+for k in range(10):
+    tau.insert(k*k,str(k)+"k!")
