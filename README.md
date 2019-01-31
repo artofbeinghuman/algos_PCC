@@ -17,7 +17,7 @@ Puis, on importe un graphe comme ça:
 g, index_to_vertex_name = import_graph("graphs/CachanGraphe7.txt", True)
 ```
 
-Nos algos attendent que les sommets soient énumeré de 1 à n. Inversement, vos 
+Nos algos s'attendent que les sommets soient énumeré de 1 à n. Inversement, vos 
 graphes ont des sommets avec une enumeration lacunaire, alors nous traduisons 
 l'enumeration des sommets pendant l'import vers [1 .. n]. 
 Avec index_to_vertex_name on peut traduire les noms des sommets resultant de 
