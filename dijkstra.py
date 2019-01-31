@@ -1,7 +1,7 @@
 import numpy as np
-from fibonacci import Fibo as File
+from parcours import tas as File
 
-def dijkstra(G,s):
+def Dijkstra(G,s):
     P = [None for i in range(len(G))]
     d = [np.infty for i in range(len(G))]
     d[s] = 0
