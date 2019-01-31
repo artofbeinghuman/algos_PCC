@@ -1,7 +1,7 @@
 """
 The graph files given by the professor are built in such a way, that if a graph contains for example 100 vertices (sommets), 
 then these vertices won't be necessarily called by the index from 1 to 100, but they could also be named 3120, 412, 10, 31, 111, etc.
-Thus, we'll make a list, that translates it's indices to the original vertex number (I'll call it vertex_name) from the graph file.
+Thus, we'll make a list, that translates it's indices to the original vertex number (I'll call it index_to_vertex_name) from the graph file.
 """
 
 import numpy as np
@@ -9,7 +9,7 @@ import numpy as np
 
 """
 if you want to later translate the names given from your algo to the names of the original graph file
-set return_12v=True (return index_to_vertex_name) in the function call.
+set return_i2v=True (return index_to_vertex_name) in the function call.
 """
 
 def import_graph(file = "graphs/testgraphw.txt", return_i2v=False):
@@ -36,11 +36,11 @@ def import_graph(file = "graphs/testgraphw.txt", return_i2v=False):
 		vertex = int(vertex)
 
 		# check whether we have to read in weighted graph
-		if adjacents.partition('(')[2]=='':
+		if adjacents.partition('(')[2]=='': # unweighted graph
 			adjacents = list(np.fromstring(adjacents, dtype=int, sep=','))
 			# since our algos expect a weight for every arc, I assign weight 1 for the unweighted graphs
 			G[vertex_name_to_index[vertex]] = [(vertex_name_to_index[adj], 1) for adj in adjacents]
-		else:
+		else: # weighted graph
 			adjacents = adjacents[1:-1].split('),(')
 			G[vertex_name_to_index[vertex]] = [(vertex_name_to_index[int(adj.split(', ')[0])], int(adj.split(', ')[1])) for adj in adjacents]
 			
