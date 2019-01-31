@@ -9,10 +9,22 @@ infty = 10**15
 
 from importgraph import *
 import copy
-from parcours import tas as File
+#from parcours import tas as File
+
+"""def search(T,x,comp,min=0,max=None):
+    #fonction calculant la dichotomie
+    if max == None:
+        max = len(T) - 1
+    if max-min<=1:
+        return min
+    c = (max - min)//2
+    if T[c][comp] <= x[comp]:
+        return search(T,x,c,max)
+    else:
+        return search(T,x,min,c)"""
 
 def search(L,e,comp):
-    """ Algorithme de recherche par dichotomie selon la première composante """
+    """ Algorithme de recherche horrible mais c'est le seul qui marche -> c'est la faut a python"""
     i = 0
     while i <= len(L)-1 and L[i][comp] < e[comp]:
             i += 1
@@ -21,7 +33,7 @@ def search(L,e,comp):
 def get(d,cle):
     return d[cle]
 
-class File3:
+class File:
     l = None #De la forme [priority,key],...
     d = None #Dictionnaire pour savoir qui est où dans la file
 
@@ -87,7 +99,7 @@ def Astar(G,s,g):
     F.add((s,cle(s)))
     T = []
     while not(F.empty()):
-        u = F.pop()
+        u = F.pop()[1]
         T.append(u)
         if u == g:
             return (d,P)

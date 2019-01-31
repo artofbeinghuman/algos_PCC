@@ -1,7 +1,8 @@
 import numpy as np
 #from astar2 import File
 from astar2 import Astar
-from parcours import tas as File
+from astar2 import File
+#from parcours import tas as File
 
 def Dijkstra(G,s):
     #Algorithme de Dijkstra avec des tas classique (on n'a pas reussit a faire
@@ -18,7 +19,7 @@ def Dijkstra(G,s):
         F.add(i) #Initialisation (voir le fichier contenant les tas de fibonacci)
     while not F.empty():
         #print(F.pop())
-        u = F.pop()
+        u = F.pop()[1]
         #Parcours des successeurs
         for (v,w) in G[u]:
             if d[v] > d[u] + w:
@@ -27,8 +28,8 @@ def Dijkstra(G,s):
                 P[v] = u
                 F.modify(d[v],v)
     return d,P
-
-"""from importgraph import import_graph
+"""
+from importgraph import import_graph
 g, index_to_vertex_name = import_graph("graphs/CachanGraphe7.txt", True)
 #g = [[(1,0.2),(2,0.7)],[(2,0.4)],[(4,0.2),(5,0.8)],[],[],[]]
 (d,P) = Dijkstra(g,0)
