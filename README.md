@@ -28,21 +28,21 @@ certain sommet dans le resultat de Bellman-Ford par exemple, alors
 
 Pour tester l'algo Bellman-Ford, lancez:
 ```python
-s = 10 # choisir un sommet de début
+s = 0 # choisir un sommet de début
 success, dist, Pi = bellman.BellmanFord(g, s) # dist=les distances, Pi=les prédecesseurs
 ```
 
 Pour tester l'algo A*, lancez:
 ```python
-s = 10 # choisir un sommet de début
-t = 0 # choisir un sommet de cible
+s = 0 # choisir un sommet de début
+t = 1 # choisir un sommet de cible
 dist, Pi = astar2.Astar(g, s, t)
 ```
 
 
 Pour tester l'algo de Dijkstra, lancez:
 ```python
-s = 10 # choisir un sommet de début
+s = 0 # choisir un sommet de début
 dist, Pi = dijkstra.Dijkstra(g, s)
 ```
 
